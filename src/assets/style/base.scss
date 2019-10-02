@@ -1,0 +1,149 @@
+input,
+textarea,
+select {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    vertical-align: middle;
+}
+
+img {
+    width: 100%;
+    border: 0;
+    vertical-align: bottom;
+}
+
+textarea {
+    resize: none;
+    border: none;
+    outline: none;
+}
+
+a {
+    color: $color-font;
+    text-decoration: none;
+}
+
+html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%
+}
+
+html * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-overflow-scrolling: touch
+}
+
+body {
+    font-size: .373333rem;
+    color: $color-font;
+}
+
+//文本框、文本域placeholder样式配置
+:-moz-placeholder {
+    font-size: toRem(28);
+    color: $color-placeholder;
+}
+
+::-moz-placeholder {
+    font-size: toRem(28);
+    color: $color-placeholder;
+}
+
+input:-ms-input-placeholder {
+    font-size: toRem(28);
+    color: $color-placeholder;
+}
+
+input::-webkit-input-placeholder {
+    font-size: toRem(28);
+    color: $color-placeholder;
+}
+
+html,
+body {
+    width: 100%;
+}
+
+body {
+    position: relative;
+    max-width: toRem(750);
+    margin: 0 auto;
+}
+
+// 清除浮动
+.clearfix:after {
+    content: '';
+    height: 0;
+    line-height: 0;
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+// 冻结类名
+.freezing {
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+}
+
+// 透明
+.visible {
+    opacity: 0;
+}
+
+// loading状态公共样式
+@-webkit-keyframes loading {
+    100% {
+        -webkit-transform: rotate(0deg) translateZ(0);
+        transform: rotate(0deg) translateZ(0);
+    }
+}
+
+@keyframes loading {
+    100% {
+        -webkit-transform: rotate(0deg) translateZ(0);
+        transform: rotate(0deg) translateZ(0);
+    }
+}
+
+.loading {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    &:after {
+        content: '';
+        width: 0.4rem;
+        height: 0.4rem;
+        border: 0.06rem solid $color-green;
+        border-right-color: transparent;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -0.3rem;
+        z-index: 500;
+        pointer-events: none;
+        border-radius: 50%;
+        -webkit-transform: rotate(-360deg) translateZ(0);
+        transform: rotate(-360deg) translateZ(0);
+        -webkit-animation: loading 0.5s linear 0s infinite forwards;
+        animation: loading 0.5s linear 0s infinite forwards;
+    }
+}
+
+// 适配ipx xs max
+// @media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+//   #app {
+//     padding-bottom: 0.5rem;
+//   }
+// }
+// @media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) {
+//   #app {
+//     padding-bottom: 0.5rem;
+//   }
+// }

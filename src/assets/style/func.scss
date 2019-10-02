@@ -1,0 +1,266 @@
+// 页面颜色变量
+$color-font: #1c1717; //字体主色
+$color-black: #000; // 黑色
+$color-placeholder: #999; //placeholer颜色
+$color-border: #E1E1E1; // 边框
+$color-btn-border:#4a4a4a; // 按钮边框
+$color-white: #FFF; //白色
+$color-green: #29C394; // 绿色
+$color-red: #D0021B; //红色
+$color-gold: #F8A120; //金色
+$color-bg: #F5F5F5; //背景色
+$color-underlined: #999; //划线价格颜色
+$color-disabled: #DDD; //禁用颜色, 比如: 按钮
+$color-time:#9B9B9B; //浅灰显示，时间，商品属性
+// 页面字体变量
+$font-pf-sc-me: 'PingFang-SC-Medium';
+$font-pf-sc-bo: 'PingFang-SC-Bold';
+$font-pf-me: 'PingFangSC-Medium';
+$font-pf-re: 'PingFangSC-Regular';
+$font-pf-li: 'PingFangSC-Light';
+$font-ft-me: 'Futura-Medium';
+$font-time:"PingFang-SC-Regular";
+// 单位rem
+@function px ($num) {
+    @return ($num / 750)*10+rem;
+}
+
+// 带行高的高度
+@mixin height ($num) {
+    height: px($num);
+    line-height: px($num);
+}
+
+// 字体全套
+@mixin font-all($fontFamily: $font-pf-sc-me, $size: 26, $color: $color-black) {
+    font-family: $fontFamily;
+    font-size: px($size);
+    color: $color;
+}
+
+// 圆角
+@mixin border-radius ($num) {
+    -webkit-border-radius: $num;
+    -moz-border-radius: $num;
+    -ms-border-radius: $num;
+    border-radius: $num;
+}
+
+// 盒模型
+@mixin box-sizing ($str) {
+    -webkit-box-sizing: $str;
+    -moz-box-sizing: $str;
+    -ms-box-sizing: $str;
+    box-sizing: $str;
+}
+
+// 盒子阴影
+@mixin box-shadow ($str) {
+    -webkit-box-shadow: $str;
+    -moz-box-shadow: $str;
+    -ms-box-shadow: $str;
+    box-shadow: $str;
+}
+
+// 变形
+@mixin transform ($str) {
+    -webkit-transform: $str;
+    -moz-transform: $str;
+    -ms-transform: $str;
+    transform: $str;
+}
+
+// 过渡
+@mixin transition ($str) {
+    -webkit-transition: $str;
+    -moz-transition: $str;
+    -ms-transition: $str;
+    transition: $str;
+}
+
+// 布局
+@mixin display-flex {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+// 增益
+@mixin flex ($num: 1) {
+    -webkit-box-flex: $num;
+    -moz-box-flex: $num;
+    -ms-flex: $num;
+    -webkit-flex: $num;
+    flex: $num;
+}
+
+// 分布
+@mixin box-pack ($str) {
+    -webkit-box-pack: $str;
+    -moz-box-pack: $str;
+    -ms-flex-pack: $str;
+    @if $str==start {
+        -webkit-justify-content: flex-start;
+        justify-content: flex-start;
+    }
+    @else if $str==end {
+        -webkit-justify-content: flex-end;
+        justify-content: flex-end;
+    }
+    @else if $str==justify {
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+    }
+    @else {
+        -webkit-justify-content: $str;
+        justify-content: $str;
+    }
+}
+
+// 对齐方式
+@mixin box-align ($str) {
+    -webkit-box-align: $str;
+    -moz-box-align: $str;
+    -ms-flex-align: $str;
+    @if $str==start {
+        -webkit-align-items: flex-start;
+        align-items: flex-start;
+    }
+    @else if $str==end {
+        -webkit-align-items: flex-end;
+        align-items: flex-end;
+    }
+    @else {
+        -webkit-align-items: $str;
+        align-items: $str;
+    }
+}
+
+@mixin order ($num: 1) {
+    -webkit-box-ordinal-group: $num;
+    -moz-box-ordinal-group: $num;
+    -ms-flex-order: $num;
+    -webkit-order: $num;
+    order: $num;
+}
+
+// 多行省略
+@mixin text-ellipsis($num:1) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    @if $num==1 {
+        white-space: nowrap;
+    }
+    @else {
+        display: -webkit-box;
+        -webkit-line-clamp: $num;
+        -webkit-box-orient: vertical;
+    }
+}
+
+@mixin flex-x {
+    @include display-flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+@mixin flex-y {
+    @include display-flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+@mixin flex-x-between ($str: center) {
+    @include flex-x;
+    @include box-pack(justify);
+    @include box-align($str);
+}
+
+@mixin flex-x-center ($str: center) {
+    @include flex-x;
+    @include box-pack(center);
+    @include box-align($str);
+}
+
+@mixin flex-x-start ($str: center) {
+    @include flex-x;
+    @include box-pack(start);
+    @include box-align($str);
+}
+
+@mixin flex-x-end ($str: center) {
+    @include flex-x;
+    @include box-pack(end);
+    @include box-align($str);
+}
+
+@mixin flex-y-between ($str: center) {
+    @include flex-y;
+    @include box-pack(justify);
+    @include box-align($str);
+}
+
+@mixin flex-y-center ($str: center) {
+    @include flex-y;
+    @include box-pack(center);
+    @include box-align($str);
+}
+
+@mixin flex-y-start ($str: center) {
+    @include flex-y;
+    @include box-pack(start);
+    @include box-align($str);
+}
+
+@mixin flex-y-end ($str: center) {
+    @include flex-y;
+    @include box-pack(end);
+    @include box-align($str);
+}
+
+// 1px
+@svg border-1px {
+    width: 4px;
+    height: 4px;
+    @rect {
+        fill: transparent; // content为透明
+        width: 100%; // 宽度为4px * 100%
+        height: 100%; // 高度为4px * 100%
+        stroke-width: 25%; // 边框宽度 4px * 25%(即1px)
+        stroke: var(--color, black); // 颜色
+    }
+}
+
+@mixin border-1px($color) {
+    border: 0 none;
+    border: 1px solid;
+    border-image: svg(border-1px param(--color $color)) 1 stretch;
+}
+
+@mixin border-1px-t($color) {
+    border: 0 none;
+    border-top: 1px solid;
+    border-image: svg(border-1px param(--color $color)) 1 stretch;
+}
+
+@mixin border-1px-b($color) {
+    border: 0 none;
+    border-bottom: 1px solid;
+    border-image: svg(border-1px param(--color $color)) 1 stretch;
+}
+
+@mixin border-1px-l($color) {
+    border: 0 none;
+    border-left: 1px solid;
+    border-image: 0 svg(border-1px param(--color $color)) 1 stretch;
+}
+
+@mixin border-1px-r($color) {
+    border: 0 none;
+    border-right: 1px solid;
+    border-image: svg(border-1px param(--color $color)) 1 stretch;
+}
