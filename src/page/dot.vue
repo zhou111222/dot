@@ -9,27 +9,27 @@
       <div class="bigimg-title">商品详情</div>
       <div class="imgcon">
         <div>
-          <div class="exposure-statistics" show-dot="{'act':'show',' key':'ad1'}">
+          <div class="exposure-statistics" show-dot="{'act':'show',' key':'details_ad_1_flowtab_show'}">
           <img src="http://img20.360buyimg.com/vc/jfs/t10156/243/2575859382/93364/fd144ba7/59fad5c1Nafa4cc5e.jpg"/>
           </div>
-          <div class="exposure-statistics" show-dot="{'act':'show',' key':'ad2'}">
+          <div class="exposure-statistics" show-dot="{'act':'show',' key':'details_ad_2_flowtab_show'}">
             <img src="http://img20.360buyimg.com/vc/jfs/t10378/195/2598219354/80430/1d0d7aaa/59fad5c8N4707fc54.jpg" />
           </div>
-          <div class="exposure-statistics" show-dot="{'act':'show',' key':'ad3'}">
+          <div class="exposure-statistics" show-dot="{'act':'show',' key':'details_ad_3_flowtab_show'}">
             <img src="http://img20.360buyimg.com/vc/jfs/t11863/190/909541478/119765/f83b04f9/59fad5a4N75c5b3bc.jpg" />
           </div>
-          <div class="exposure-statistics" show-dot="{'act':'show',' key':'ad4'}">
+          <div class="exposure-statistics" show-dot="{'act':'show',' key':'details_ad_4_flowtab_show'}">
             <img src="http://img20.360buyimg.com/vc/jfs/t10180/119/2581479656/102027/cc9cd640/59fad5b4N271b5bac.jpg" />
           </div>
         </div>
       </div>
     </div>
-    <div id="recommendations" class="arrDom exposure-statistics" show-dot="{'act':'show',' key':'hotProduct'}">
+    <div id="recommendations" class="arrDom exposure-statistics" show-dot="{'act':'show',' key':'details_recommendations_1_dot_show'}">
       <div class="hot-title">热门推荐 </div>
       <div class="products w"
       v-for="product in hotProductList"
       :key="product.productId"
-      v-clstag-dot = "{'act':'click', 'key': product.productId}">
+      v-clstag-dot = "{'act':'click', 'key': 'details_product_1_dot_click'}">
         <div class="pro-img">
           <img :src="product.imgUrl"/>
         </div>
@@ -49,9 +49,9 @@
               </i>
             </p>
             <p class="monthAmt">
-              <span v-clstag-dot = "{'act':'thumbs', 'key': product.productId}">点赞</span>
-              <span v-clstag-dot = "{'act':'collection', 'key': product.productId}">收藏</span>
-              <span v-clstag-dot = "{'act':'comment', 'key': product.productId}">评论</span>
+              <span v-clstag-dot = "{'act':'thumbs', 'key': 'details_product_1_dot_thumbs', 'productId': product.productId}">点赞</span>
+              <span v-clstag-dot = "{'act':'collection', 'key': 'details_product_1_dot_collection', 'productId': product.productId}">收藏</span>
+              <span v-clstag-dot = "{'act':'comment', 'key': 'details_product_1_dot_comment', 'productId': product.productId}">评论</span>
             </p>
           </div>
         </div>
@@ -111,9 +111,6 @@ export default {
       ],
       pageId: 1
     }
-  },
-  mounted () {
-    document.title = '商品详情页'
   }
 }
 </script>
