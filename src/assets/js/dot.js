@@ -69,6 +69,46 @@ export const dot = {
       observer.observe(item) // 观察每一个进入视口的区域
     })
   },
+  checkTime: function (i) {
+    if (i < 10) {
+      i = '0' + i
+    }
+    return i
+  },
+  /**
+     * @description: 获取当前时间 YY-MM-DD-HH-MM-SS
+     */
+  showTime: function () {
+    var myDate = new Date()
+    var year = myDate.getFullYear()
+    var month = myDate.getMonth() + 1
+    var date = myDate.getDate()
+    var h = myDate.getHours()
+    var m = myDate.getMinutes()
+    var s = myDate.getSeconds()
+    m = this.checkTime(m)
+    s = this.checkTime(s)
+    h = this.checkTime(h)
+    return year + '_' + month + '_' + date + '_' + h + ':' + m + ':' + s + '_'
+  },
+  /**
+     * @description: 下载日志
+     */
+  logTxt: function (data, name) {
+    var urlObject = window.URL || window.webkitURL || window
+    var exportBlob = new Blob([data])
+    var saveLink = document.createElementNS('http://www.w3.org/1999/xhtml', 'a')
+    saveLink.href = urlObject.createObjectURL(exportBlob)
+    saveLink.download = name
+    saveLink.click()
+  },
+  /**
+     * @description: 保存日志
+     */
+  saveFile: function (str) {
+    var name = this.showTime() + 'log.txt'
+    this.logTxt(str, name)
+  },
   /**
      * @description: 页面启动日志埋点
      */
@@ -116,7 +156,6 @@ export const dot = {
           position.clientY = e.clientY
           position.pageX = e.pageX
           position.pageY = e.pageY
-          console.log(position)
           let query = Object.assign({}, position, time, binding.value, that.params)
           that.analytics(that.splicingStr(query))
         }, false)
@@ -192,6 +231,7 @@ export const dot = {
   // 2.只关心数据是否发送到服务器，服务器不需要做出消息体响应。并且一般客户端也不需要做出响应。
   // 3.实现了跨域
   analytics: function (action) {
+    this.saveFile(action);
     (new Image()).src = `https://mercury.jd.com/log.gif?${action}`
     localStorage.removeItem('showExposureData')
   }
